@@ -1,60 +1,81 @@
 # RailJet - Mumbai Local Train Ticket Booking App
 
-RailJet is a Flutter application for booking Mumbai local train tickets. The app lives in the `train_ticket/` folder of this repository and uses Provider-based state management, mock station data, fare calculation, ticket generation, and QR-style booking confirmation.
+RailJet is a Flutter application for booking Mumbai local train tickets. The actual app code lives in the [train_ticket](train_ticket) folder, while this root README is the version GitHub shows on the repository homepage.
 
-If you opened this repository on GitHub and did not see a README, the reason was that the documentation only existed inside the nested app folder. GitHub renders the README from the repository root, so this file is the one shown on the main page.
+The project uses Provider-based state management, mock Mumbai local train data, fare calculation, seat selection, passenger details, payment review, and ticket confirmation with a QR-style booking summary.
 
-## Features
+## What This Project Does
 
-- Station search and selection for Mumbai local train routes
+RailJet turns a standard Flutter app shell into a booking experience for Mumbai local trains. Users can choose stations, compare routes, select ticket type and class, and complete a mock booking flow from search to confirmation.
+
+## Highlights
+
+- Station search and selection for Mumbai local routes
 - Source and destination swapping
-- Ticket type selection: Single and Return
-- Ticket class selection: Second Class, First Class, and AC
-- Dynamic fare calculation based on distance, class, and ticket type
-- Route listing with mock train options
-- Seat selection and passenger details flow
-- Payment review screen
-- Booking confirmation with ticket ID and QR code display
-- Provider-based state management for a reactive booking flow
+- Single and return ticket types
+- Second class, first class, and AC selection
+- Distance-based fare calculation
+- Mock route and train options
+- Seat selection and passenger details screens
+- Payment review and booking confirmation
+- Ticket ID and QR-style confirmation output
+- Provider-driven reactive state management
 
-## App Flow
+## Booking Flow
 
 1. Splash screen loads the app.
-2. Home screen lets the user choose source and destination stations.
-3. Available routes are shown based on the selected journey.
-4. The user selects a route and reviews train details.
-5. Seat selection captures a preferred seat.
-6. Passenger details are entered and reviewed.
-7. Payment screen summarizes the total fare.
-8. Confirmation screen generates the ticket and QR code.
+2. Home screen captures the source and destination stations.
+3. Route options are generated for the selected journey.
+4. A route is chosen and the train details screen is shown.
+5. Seat selection assigns a preferred seat.
+6. Passenger details are entered.
+7. Payment screen reviews the total fare.
+8. Confirmation screen generates the booking result and QR code.
+
+## Screens At a Glance
+
+- Splash screen: initial app loading and navigation handoff
+- Home screen: station selection and fare preview
+- Train list screen: route comparison
+- Train details screen: journey details and amenities
+- Seat selection screen: available seat picker
+- Passenger details screen: booking form
+- Payment screen: payment method and total summary
+- Confirmation screen: booking ID and QR display
 
 ## Tech Stack
 
 - Flutter
 - Dart
 - Provider for state management
-- Shared Preferences for lightweight local storage
+- Shared Preferences for local persistence
 - QR utilities for ticket display
 
 ## Architecture
 
-The codebase is organized into clear layers:
+The app is organized into distinct layers:
 
 - Models: station, route, ticket, and booking state objects
-- Services: mock data, fare calculation, and ticket generation
-- Providers: booking state orchestration and UI-facing actions
-- Widgets: reusable cards, dropdowns, and progress UI
+- Services: mock data, route generation, fare logic, and ticket creation
+- Providers: booking state orchestration and screen updates
+- Widgets: reusable cards, selectors, and progress UI
 - Screens: the end-to-end booking experience
+
+High-level flow:
+
+```text
+Screens -> Provider -> Service Layer -> Models / Mock Data
+```
 
 ## Repository Structure
 
 ```text
-README.md                # Root project overview shown on GitHub
-train_ticket/            # Flutter app source
-  ├── lib/
-  ├── assets/
-  ├── test/
-  └── pubspec.yaml
+README.md
+train_ticket/
+├── lib/
+├── assets/
+├── test/
+└── pubspec.yaml
 ```
 
 ## Getting Started
@@ -101,6 +122,13 @@ Base fare = ceil(distance / 5 km) * 5
 Final fare = Base fare * class multiplier * ticket type multiplier
 ```
 
+## Development Notes
+
+- The current implementation uses mock data so the app can run without a backend.
+- The nested [train_ticket/README.md](train_ticket/README.md) contains app-level documentation.
+- The architecture and implementation details are documented in the files inside the `train_ticket` folder.
+- The root [.gitignore](.gitignore) keeps IDE metadata and generated files out of GitHub.
+
 ## Related Docs
 
 - [App README](train_ticket/README.md)
@@ -109,3 +137,11 @@ Final fare = Base fare * class multiplier * ticket type multiplier
 - [Route testing guide](train_ticket/ROUTE_TESTING_GUIDE.md)
 - [Route interchange guide](train_ticket/ROUTE_INTERCHANGE_GUIDE.md)
 - [Logo setup](train_ticket/LOGO_SETUP.md)
+
+## Flutter Help
+
+If you want to learn Flutter or extend this app further, the official docs are the best starting point:
+
+- https://docs.flutter.dev/
+- https://docs.flutter.dev/get-started/codelab
+- https://docs.flutter.dev/cookbook
