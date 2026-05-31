@@ -1,14 +1,67 @@
 # RailJet - Mumbai Local Train Ticket Booking App 🚆
 
-RailJet is a Flutter application for booking Mumbai local train tickets. The actual app code lives in the [train_ticket](train_ticket) folder, while this root README is the version GitHub shows on the repository homepage.
+<p align="center">
+	<img src="https://img.shields.io/badge/Flutter-3.10.4+-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter" />
+	<img src="https://img.shields.io/badge/Dart-3.10.4+-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart" />
+	<img src="https://img.shields.io/badge/Provider-State%20Management-8E44AD?style=for-the-badge" alt="Provider" />
+	<img src="https://img.shields.io/badge/License-Private-lightgrey?style=for-the-badge" alt="License" />
+</p>
 
-The project uses Provider-based state management, mock Mumbai local train data, fare calculation, seat selection, passenger details, payment review, and ticket confirmation with a QR-style booking summary.
+RailJet is a Flutter app for booking Mumbai local train tickets. The actual application lives in the [train_ticket](train_ticket) folder, while this root README is the page GitHub shows on the repository homepage.
 
-## What This Project Does ✨
+It is built around a clean booking flow: station selection, route comparison, fare calculation, seat selection, passenger details, payment review, and confirmation with a ticket ID and QR-style summary.
 
-RailJet turns a standard Flutter app shell into a booking experience for Mumbai local trains. Users can choose stations, compare routes, select ticket type and class, and complete a mock booking flow from search to confirmation.
+## At a Glance ✨
 
-## Highlights 🌟
+| What it gives you | Why it matters |
+| --- | --- |
+| Station search and selection | Fast source and destination setup |
+| Route comparison | Lets users see available train options |
+| Dynamic fare calculation | Fare changes with distance, class, and ticket type |
+| Multi-step booking flow | Keeps the experience simple and predictable |
+| Ticket confirmation | Produces a clean mock ticket with QR-style output |
+| Provider-based state management | Keeps the UI reactive and easier to maintain |
+
+## Why This Project Exists 💡
+
+RailJet started as a UI reuse exercise, but the end result is a full train-ticket booking experience. Instead of treating the app like a generic Flutter starter, the screens, states, and flows were shaped around a real-world local transport use case.
+
+The result is a project that feels more like a product demo than a template. It shows how to structure a booking experience, how to separate UI from logic, and how to keep the codebase organized enough to grow later.
+
+## What Users Can Do 🎯
+
+- Pick source and destination stations from Mumbai local routes
+- Swap stations instantly
+- Choose between Single and Return ticket types
+- Select Second Class, First Class, or AC
+- Review live fare updates as selections change
+- Browse available route options
+- Continue through seat, passenger, payment, and confirmation screens
+- Generate a booking ticket with a booking ID and QR-style summary
+
+## Booking Journey 🧭
+
+1. Splash screen loads the app and prepares the booking flow.
+2. Home screen captures the journey details.
+3. Route options are generated for the selected stations.
+4. A route is chosen and the train details screen is shown.
+5. Seat selection assigns a preferred seat.
+6. Passenger details are entered and validated.
+7. Payment screen reviews the total fare before confirmation.
+8. Confirmation screen creates the final booking result.
+
+## App Screens 🖼️
+
+- Splash screen: startup and navigation handoff
+- Home screen: station selection and fare preview
+- Train list screen: available route comparison
+- Train details screen: route and journey details
+- Seat selection screen: seat picker and availability view
+- Passenger details screen: booking form
+- Payment screen: total summary and payment method selection
+- Confirmation screen: booking ID and QR-style ticket display
+
+## Feature Set 🌟
 
 - Station search and selection for Mumbai local routes
 - Source and destination swapping
@@ -20,28 +73,6 @@ RailJet turns a standard Flutter app shell into a booking experience for Mumbai 
 - Payment review and booking confirmation
 - Ticket ID and QR-style confirmation output
 - Provider-driven reactive state management
-
-## Booking Flow 🧭
-
-1. Splash screen loads the app.
-2. Home screen captures the source and destination stations.
-3. Route options are generated for the selected journey.
-4. A route is chosen and the train details screen is shown.
-5. Seat selection assigns a preferred seat.
-6. Passenger details are entered.
-7. Payment screen reviews the total fare.
-8. Confirmation screen generates the booking result and QR code.
-
-## Screens At a Glance 🖼️
-
-- Splash screen: initial app loading and navigation handoff
-- Home screen: station selection and fare preview
-- Train list screen: route comparison
-- Train details screen: journey details and amenities
-- Seat selection screen: available seat picker
-- Passenger details screen: booking form
-- Payment screen: payment method and total summary
-- Confirmation screen: booking ID and QR display
 
 ## Tech Stack 🛠️
 
@@ -61,13 +92,11 @@ The app is organized into distinct layers:
 - Widgets: reusable cards, selectors, and progress UI
 - Screens: the end-to-end booking experience
 
-High-level flow:
-
 ```text
 Screens -> Provider -> Service Layer -> Models / Mock Data
 ```
 
-## Repository Structure 📁
+## Project Structure 📁
 
 ```text
 README.md
@@ -78,7 +107,7 @@ train_ticket/
 └── pubspec.yaml
 ```
 
-## Getting Started 🚀
+## Quick Start 🚀
 
 ### Prerequisites ✅
 
@@ -115,12 +144,28 @@ flutter build apk --release
 
 ## Fare Calculation 💰
 
-Fare is calculated from the journey distance and then adjusted by class and ticket type.
+Fare is calculated from journey distance and then adjusted by class and ticket type.
 
 ```text
 Base fare = ceil(distance / 5 km) * 5
-Final fare = Base fare * class multiplier * ticket type multiplier
+Final fare = Base fare × class multiplier × ticket type multiplier
 ```
+
+Example:
+
+- Churchgate to Borivali, Second Class, Single Ticket
+- Distance: 38 km
+- Base fare: 8 intervals × 5 = 40
+- Final fare: 40
+
+## Code Layout Inside the App 📚
+
+- [main.dart](train_ticket/lib/main.dart): app entry point and Provider setup
+- [providers/ticket_booking_provider.dart](train_ticket/lib/providers/ticket_booking_provider.dart): booking state management
+- [services/train_ticket_service.dart](train_ticket/lib/services/train_ticket_service.dart): mock data and fare logic
+- [models/station.dart](train_ticket/lib/models/station.dart): station, route, ticket, and booking models
+- [widgets/ticket_widgets.dart](train_ticket/lib/widgets/ticket_widgets.dart): reusable UI components
+- [screens](train_ticket/lib/screens): booking flow screens
 
 ## Development Notes 📝
 
@@ -128,6 +173,15 @@ Final fare = Base fare * class multiplier * ticket type multiplier
 - The nested [train_ticket/README.md](train_ticket/README.md) contains app-level documentation.
 - The architecture and implementation details are documented in the files inside the `train_ticket` folder.
 - The root [.gitignore](.gitignore) keeps IDE metadata and generated files out of GitHub.
+
+## Suggested Next Improvements 🔥
+
+If you want this README to feel even more like a top-tier showcase page, the next upgrades would be:
+
+1. Add a banner image or app mockup at the top.
+2. Add real screenshots of the home, route, and confirmation screens.
+3. Add badges for build status, platform support, and license.
+4. Add a short animated GIF or screen recording section.
 
 ## Related Docs 🔗
 
